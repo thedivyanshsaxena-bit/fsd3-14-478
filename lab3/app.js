@@ -1,6 +1,6 @@
 import http from "http";
 // import * as teams from "teams.js";
-import { getAllTeams, addTeam } from "./teams.js";
+import { getAllTeams, addTeam } from "../lab4/teams.js";
 import { parse as parseUrl } from "url";
 
 const PORT = 5000;
