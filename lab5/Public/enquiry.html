@@ -1,645 +1,525 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enquiry - TimeCraft</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>BlueWave | Enquiry</title>
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            font-family: Arial, sans-serif;
-            color: #171717;
-            background: #f7f7f7;
-        }
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f7f9fc;
+        color: #172033;
+        line-height: 1.6;
+      }
 
-        /* NAVBAR */
+      /* HEADER */
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        padding: 18px 7%;
+
+        background: rgba(255, 255, 255, 0.97);
+        border-bottom: 1px solid #e8ebf0;
+        backdrop-filter: blur(10px);
+      }
+
+      .logo {
+        color: #1769ff;
+        text-decoration: none;
+        font-size: 26px;
+        font-weight: 800;
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+      }
+
+      nav a {
+        color: #4c5568;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      nav a:hover,
+      nav a.active {
+        color: #1769ff;
+      }
+
+      .nav-btn {
+        background: #1769ff;
+        color: white !important;
+
+        padding: 10px 18px;
+        border-radius: 8px;
+      }
+
+      /* HERO */
+
+      .hero {
+        padding: 85px 7%;
+        text-align: center;
+
+        background: linear-gradient(135deg, #eef5ff, #ffffff);
+      }
+
+      .badge {
+        display: inline-block;
+
+        padding: 8px 15px;
+        margin-bottom: 20px;
+
+        border-radius: 30px;
+
+        background: #dceaff;
+        color: #1769ff;
+
+        font-weight: 700;
+      }
+
+      .hero h1 {
+        font-size: clamp(42px, 6vw, 62px);
+        margin-bottom: 15px;
+      }
+
+      .hero h1 span {
+        color: #1769ff;
+      }
+
+      .hero p {
+        max-width: 650px;
+        margin: auto;
+
+        color: #687286;
+        font-size: 18px;
+      }
+
+      /* ENQUIRY */
+
+      .enquiry-section {
+        padding: 80px 7%;
+      }
+
+      .enquiry-wrapper {
+        max-width: 1100px;
+        margin: auto;
+
+        display: grid;
+        grid-template-columns: 0.8fr 1.2fr;
+
+        overflow: hidden;
+
+        background: white;
+        border-radius: 22px;
+
+        box-shadow: 0 20px 50px rgba(20, 35, 60, 0.08);
+      }
+
+      /* CONTACT */
+
+      .contact-info {
+        padding: 45px;
+
+        background: #101a2d;
+        color: white;
+      }
+
+      .contact-info h2 {
+        font-size: 32px;
+        margin-bottom: 15px;
+      }
+
+      .contact-info > p {
+        color: #aeb7c8;
+        margin-bottom: 35px;
+      }
+
+      .info-item {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 25px;
+      }
+
+      .info-icon {
+        font-size: 25px;
+      }
+
+      .info-item h3 {
+        font-size: 16px;
+        margin-bottom: 3px;
+      }
+
+      .info-item p {
+        color: #aeb7c8;
+        font-size: 14px;
+      }
+
+      /* FORM */
+
+      .form-area {
+        padding: 45px;
+      }
+
+      .form-area h2 {
+        font-size: 30px;
+        margin-bottom: 25px;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+
+        margin-bottom: 7px;
+
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+
+        padding: 13px 15px;
+
+        border: 1px solid #d9dee8;
+        border-radius: 9px;
+
+        font-family: inherit;
+        font-size: 15px;
+
+        outline: none;
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: #1769ff;
+
+        box-shadow: 0 0 0 3px rgba(23, 105, 255, 0.1);
+      }
+
+      textarea {
+        min-height: 130px;
+        resize: vertical;
+      }
+
+      .submit-btn {
+        width: 100%;
+
+        padding: 15px;
+
+        border: none;
+        border-radius: 10px;
+
+        background: #1769ff;
+        color: white;
+
+        font-size: 16px;
+        font-weight: 700;
+
+        cursor: pointer;
+      }
+
+      .submit-btn:hover {
+        background: #0755dd;
+      }
+
+      .note {
+        text-align: center;
+
+        margin-top: 15px;
+
+        color: #7a8394;
+        font-size: 13px;
+      }
+
+      /* FOOTER */
+
+      footer {
+        padding: 30px 7%;
+
+        display: flex;
+        justify-content: space-between;
+
+        background: #0b1220;
+        color: #9da7b9;
+      }
+
+      footer strong {
+        color: white;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 25px;
+      }
+
+      .footer-links a {
+        color: #9da7b9;
+        text-decoration: none;
+      }
+
+      .footer-links a:hover {
+        color: white;
+      }
+
+      /* RESPONSIVE */
+
+      @media (max-width: 850px) {
         nav {
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 8%;
-            border-bottom: 1px solid #eee;
-            background: white;
+          display: none;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-family: Georgia, serif;
-            font-size: 27px;
-            font-weight: bold;
-        }
-
-        .logo-icon {
-            width: 32px;
-            height: 32px;
-            border: 3px solid #111;
-            border-radius: 50%;
-            position: relative;
-        }
-
-        .logo-icon::before {
-            content: "";
-            position: absolute;
-            width: 2px;
-            height: 10px;
-            background: #111;
-            left: 13px;
-            top: 4px;
-        }
-
-        .logo-icon::after {
-            content: "";
-            position: absolute;
-            width: 8px;
-            height: 2px;
-            background: #111;
-            left: 13px;
-            top: 14px;
-            transform: rotate(30deg);
-            transform-origin: left;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 38px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #444;
-            font-size: 14px;
-        }
-
-        .nav-links a:hover,
-        .nav-links .active {
-            color: #c69b45;
-        }
-
-        .nav-icons {
-            display: flex;
-            gap: 20px;
-            font-size: 22px;
-        }
-
-        /* PAGE HERO */
-        .page-hero {
-            height: 280px;
-            background:
-                linear-gradient(rgba(0,0,0,.75), rgba(0,0,0,.75)),
-                url("https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=1600&q=85");
-            background-size: cover;
-            background-position: center;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .page-hero h1 {
-            font-family: Georgia, serif;
-            font-size: 50px;
-            margin-bottom: 12px;
-        }
-
-        .page-hero p {
-            color: #ddd;
-        }
-
-        /* MAIN */
-        .enquiry-container {
-            max-width: 1100px;
-            margin: 65px auto;
-            padding: 0 25px;
-            display: grid;
-            grid-template-columns: 0.8fr 1.2fr;
-            gap: 35px;
-        }
-
-        /* CONTACT INFO */
-        .contact-info {
-            background: #111;
-            color: white;
-            padding: 45px;
-        }
-
-        .small-title {
-            color: #d8af63;
-            letter-spacing: 3px;
-            font-size: 12px;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .contact-info h2 {
-            font-family: Georgia, serif;
-            font-size: 36px;
-            line-height: 1.2;
-            margin-bottom: 18px;
-        }
-
-        .contact-info > p {
-            color: #aaa;
-            line-height: 1.7;
-            font-size: 14px;
-            margin-bottom: 35px;
-        }
-
-        .contact-item {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .contact-icon {
-            font-size: 23px;
-            width: 35px;
-        }
-
-        .contact-item h4 {
-            font-size: 14px;
-            margin-bottom: 5px;
-        }
-
-        .contact-item p {
-            color: #aaa;
-            font-size: 13px;
-            line-height: 1.6;
-        }
-
-        /* FORM */
-        .form-box {
-            background: white;
-            padding: 45px;
-            box-shadow: 0 5px 25px rgba(0,0,0,.06);
-        }
-
-        .form-box h2 {
-            font-family: Georgia, serif;
-            font-size: 34px;
-            margin-bottom: 10px;
-        }
-
-        .form-box > p {
-            color: #777;
-            font-size: 14px;
-            margin-bottom: 30px;
+        .enquiry-wrapper {
+          grid-template-columns: 1fr;
         }
 
         .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 18px;
+          grid-template-columns: 1fr;
         }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-
-        input,
-        select,
-        textarea {
-            width: 100%;
-            padding: 13px 14px;
-            border: 1px solid #ddd;
-            outline: none;
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            transition: .2s;
-        }
-
-        input:focus,
-        select:focus,
-        textarea:focus {
-            border-color: #c69b45;
-        }
-
-        textarea {
-            height: 130px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 15px;
-            background: #111820;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
-            transition: .3s;
-        }
-
-        .submit-btn:hover {
-            background: #c69b45;
-            color: #111;
-        }
-
-        /* FOOTER */
         footer {
-            background: #080808;
-            color: white;
-            padding: 45px 8%;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 40px;
+          flex-direction: column;
+          gap: 15px;
+          text-align: center;
         }
 
-        footer h3 {
-            font-family: Georgia, serif;
-            margin-bottom: 15px;
+        .footer-links {
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 500px) {
+        .enquiry-section {
+          padding: 50px 5%;
         }
 
-        footer p,
-        footer a {
-            color: #aaa;
-            font-size: 13px;
-            line-height: 2;
-            text-decoration: none;
-            display: block;
+        .contact-info,
+        .form-area {
+          padding: 30px 22px;
         }
-
-        footer a:hover {
-            color: #e5bd72;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 800px) {
-
-            .nav-links {
-                display: none;
-            }
-
-            .enquiry-container {
-                grid-template-columns: 1fr;
-                margin: 40px auto;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            footer {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        @media (max-width: 500px) {
-
-            nav {
-                padding: 0 5%;
-            }
-
-            .page-hero h1 {
-                font-size: 40px;
-            }
-
-            .contact-info,
-            .form-box {
-                padding: 30px 22px;
-            }
-
-            footer {
-                grid-template-columns: 1fr;
-            }
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
+    <!-- HEADER -->
 
-    <!-- NAVBAR -->
-    <nav>
+    <header>
+      <a href="/" class="logo"> BlueWave </a>
 
-        <div class="logo">
-            <div class="logo-icon"></div>
-            TimeCraft
-        </div>
+      <nav>
+        <a href="/"> Home </a>
 
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#">Shop</a></li>
-            <li><a href="#">Categories ▾</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="enquiry.html" class="active">Contact</a></li>
-        </ul>
+        <a href="/about"> About Us </a>
 
-        <div class="nav-icons">
-            <span>⌕</span>
-            <span>♙</span>
-            <span>🛒</span>
-        </div>
+        <a href="/#products"> Products </a>
 
-    </nav>
-
+        <a href="/enquiry" class="active nav-btn"> Enquiry </a>
+      </nav>
+    </header>
 
     <!-- HERO -->
-    <section class="page-hero">
 
-        <div>
-            <h1>Make An Enquiry</h1>
-            <p>Have a question? We'd love to hear from you.</p>
-        </div>
+    <section class="hero">
+      <span class="badge"> We're Here to Help </span>
 
+      <h1>Have a <span>question?</span></h1>
+
+      <p>
+        Tell us what you're looking for and our team will get back to you with
+        the information you need.
+      </p>
     </section>
 
+    <!-- ENQUIRY FORM -->
 
-    <!-- ENQUIRY -->
-    <main class="enquiry-container">
-
+    <section class="enquiry-section">
+      <div class="enquiry-wrapper">
         <!-- CONTACT INFORMATION -->
+
         <div class="contact-info">
+          <h2>Let's Connect</h2>
 
-            <div class="small-title">
-                GET IN TOUCH
+          <p>
+            Whether you need help choosing a Bluetooth device or want more
+            product information, we'd love to hear from you.
+          </p>
+
+          <div class="info-item">
+            <div class="info-icon">📧</div>
+
+            <div>
+              <h3>Email</h3>
+              <p>hello@bluewave.example</p>
             </div>
+          </div>
 
-            <h2>
-                Let's Talk
-                About Time
-            </h2>
+          <div class="info-item">
+            <div class="info-icon">📞</div>
 
-            <p>
-                Whether you have a question about a watch,
-                your order, or our services, our team is ready
-                to help.
-            </p>
-
-
-            <div class="contact-item">
-
-                <div class="contact-icon">⌖</div>
-
-                <div>
-                    <h4>Visit Us</h4>
-                    <p>
-                        TimeCraft Store<br>
-                        New Delhi, India
-                    </p>
-                </div>
-
+            <div>
+              <h3>Phone</h3>
+              <p>+1 800 555 0199</p>
             </div>
+          </div>
 
+          <div class="info-item">
+            <div class="info-icon">🕐</div>
 
-            <div class="contact-item">
-
-                <div class="contact-icon">✉</div>
-
-                <div>
-                    <h4>Email Us</h4>
-                    <p>
-                        support@timecraft.com
-                    </p>
-                </div>
-
+            <div>
+              <h3>Business Hours</h3>
+              <p>Monday - Friday, 9 AM - 6 PM</p>
             </div>
+          </div>
 
+          <div class="info-item">
+            <div class="info-icon">📍</div>
 
-            <div class="contact-item">
-
-                <div class="contact-icon">☎</div>
-
-                <div>
-                    <h4>Call Us</h4>
-                    <p>
-                        +91 98765 43210
-                    </p>
-                </div>
-
+            <div>
+              <h3>Office</h3>
+              <p>
+                100 Wireless Avenue<br />
+                Technology District
+              </p>
             </div>
-
-
-            <div class="contact-item">
-
-                <div class="contact-icon">◷</div>
-
-                <div>
-                    <h4>Business Hours</h4>
-                    <p>
-                        Monday - Saturday<br>
-                        10:00 AM - 7:00 PM
-                    </p>
-                </div>
-
-            </div>
-
+          </div>
         </div>
-
 
         <!-- FORM -->
-        <div class="form-box">
 
-            <h2>Send Us An Enquiry</h2>
+        <div class="form-area">
+          <h2>Send an Enquiry</h2>
 
-            <p>
-                Fill in the form below and our team will get
-                back to you shortly.
+          <form action="/enquiry" method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name"> Full Name * </label>
+
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Enter your name"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="email"> Email Address * </label>
+
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="you@example.com"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone"> Phone Number </label>
+
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  placeholder="+1 234 567 890"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="device"> Device Type </label>
+
+                <select id="device" name="device">
+                  <option value="">Select a device</option>
+
+                  <option value="headphones">Headphones</option>
+
+                  <option value="earbuds">Earbuds</option>
+
+                  <option value="speaker">Bluetooth Speaker</option>
+
+                  <option value="accessories">Accessories</option>
+
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="subject"> Subject * </label>
+
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                placeholder="What can we help you with?"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="message"> Your Enquiry * </label>
+
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Tell us more about your enquiry..."
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Send Enquiry →</button>
+
+            <p class="note">
+              We'll use your information only to respond to your enquiry.
             </p>
-
-
-            <form id="enquiryForm">
-
-                <div class="form-row">
-
-                    <div class="form-group">
-                        <label for="name">
-                            Full Name *
-                        </label>
-
-                        <input
-                            type="text"
-                            id="name"
-                            placeholder="Enter your name"
-                            required
-                        >
-                    </div>
-
-
-                    <div class="form-group">
-                        <label for="email">
-                            Email Address *
-                        </label>
-
-                        <input
-                            type="email"
-                            id="email"
-                            placeholder="Enter your email"
-                            required
-                        >
-                    </div>
-
-                </div>
-
-
-                <div class="form-row">
-
-                    <div class="form-group">
-                        <label for="phone">
-                            Phone Number
-                        </label>
-
-                        <input
-                            type="tel"
-                            id="phone"
-                            placeholder="Enter your phone number"
-                        >
-                    </div>
-
-
-                    <div class="form-group">
-                        <label for="subject">
-                            Enquiry Type
-                        </label>
-
-                        <select id="subject">
-
-                            <option value="">
-                                Select an option
-                            </option>
-
-                            <option>
-                                Product Enquiry
-                            </option>
-
-                            <option>
-                                Order Enquiry
-                            </option>
-
-                            <option>
-                                Warranty
-                            </option>
-
-                            <option>
-                                Returns
-                            </option>
-
-                            <option>
-                                General Enquiry
-                            </option>
-
-                        </select>
-
-                    </div>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="message">
-                        Your Message *
-                    </label>
-
-                    <textarea
-                        id="message"
-                        placeholder="Write your enquiry here..."
-                        required
-                    ></textarea>
-
-                </div>
-
-
-                <button
-                    type="submit"
-                    class="submit-btn"
-                >
-                    Send Enquiry →
-                </button>
-
-            </form>
-
+          </form>
         </div>
-
-    </main>
-
+      </div>
+    </section>
 
     <!-- FOOTER -->
+
     <footer>
+      <div>© 2026 <strong>BlueWave</strong>. All rights reserved.</div>
 
-        <div>
-            <h3>TimeCraft</h3>
+      <div class="footer-links">
+        <a href="/"> Home </a>
 
-            <p>
-                Premium watches designed for those who
-                appreciate timeless style and precision.
-            </p>
-        </div>
+        <a href="/about"> About Us </a>
 
-        <div>
-            <h3>Shop</h3>
-
-            <a href="#">Men's Watches</a>
-            <a href="#">Women's Watches</a>
-            <a href="#">Sports Watches</a>
-            <a href="#">Luxury Watches</a>
-        </div>
-
-        <div>
-            <h3>Company</h3>
-           
-            <a href="about.html">About Us</a>
-            <a href="enquiry.html">Contact</a>
-            <a href="#">Careers</a>
-            <a href="#">Privacy Policy</a>
-        </div>
-
-        <div>
-            <h3>Help</h3>
-
-            <a href="/">Home</a>
-            <a href="#">FAQs</a>
-            <a href="#">Shipping</a>
-            <a href="#">Returns</a>
-            <a href="/about">About</a>
-            <a href="enquiry.html" class="active">Support</a>
-        </div>
-
+        <a href="/enquiry"> Enquiry </a>
+      </div>
     </footer>
-
-
-    <!-- JAVASCRIPT -->
-    <script>
-
-        document
-            .getElementById("enquiryForm")
-            .addEventListener("submit", function(event) {
-
-                event.preventDefault();
-
-                const name =
-                    document.getElementById("name").value;
-
-                alert(
-                    "Thank you, " +
-                    name +
-                    "! Your enquiry has been submitted successfully."
-                );
-
-                this.reset();
-
-            });
-
-    </script>
-
-</body>
+  </body>
 </html>
-

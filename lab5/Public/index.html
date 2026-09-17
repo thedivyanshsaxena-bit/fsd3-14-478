@@ -1,881 +1,502 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TimeCraft - Premium Watches</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BlueWave | Bluetooth Devices</title>
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            font-family: Arial, sans-serif;
-            color: #171717;
-            background: #fff;
-        }
+      html {
+        scroll-behavior: smooth;
+      }
 
-        /* NAVBAR */
+      body {
+        font-family: Arial, sans-serif;
+        color: #172033;
+        background: #f7f9fc;
+        line-height: 1.6;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        padding: 18px 7%;
+        background: white;
+        border-bottom: 1px solid #e8ebf0;
+      }
+
+      .logo {
+        color: #1769ff;
+        text-decoration: none;
+        font-size: 26px;
+        font-weight: 800;
+      }
+
+      nav {
+        display: flex;
+        gap: 28px;
+        align-items: center;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: #4c5568;
+        font-weight: 600;
+      }
+
+      nav a:hover,
+      nav a.active {
+        color: #1769ff;
+      }
+
+      .nav-btn {
+        background: #1769ff;
+        color: white !important;
+        padding: 10px 18px;
+        border-radius: 8px;
+      }
+
+      .hero {
+        min-height: 620px;
+        padding: 80px 7%;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: 50px;
+
+        background: linear-gradient(135deg, #eef5ff, #ffffff);
+      }
+
+      .badge {
+        display: inline-block;
+        background: #dceaff;
+        color: #1769ff;
+        padding: 8px 15px;
+        border-radius: 30px;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      .hero h1 {
+        font-size: clamp(45px, 6vw, 72px);
+        line-height: 1.05;
+        margin-bottom: 25px;
+      }
+
+      .hero h1 span {
+        color: #1769ff;
+      }
+
+      .hero p {
+        color: #687286;
+        font-size: 19px;
+        max-width: 580px;
+        margin-bottom: 30px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 14px 24px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .primary {
+        background: #1769ff;
+        color: white;
+      }
+
+      .secondary {
+        background: white;
+        color: #172033;
+        border: 1px solid #dce1e9;
+        margin-left: 10px;
+      }
+
+      .primary:hover {
+        background: #0755dd;
+      }
+
+      .hero-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .circle {
+        width: 380px;
+        height: 380px;
+        border-radius: 50%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: #1769ff;
+        box-shadow: 0 30px 70px rgba(23, 105, 255, 0.25);
+
+        font-size: 150px;
+      }
+
+      section {
+        padding: 80px 7%;
+      }
+
+      .title {
+        text-align: center;
+        margin-bottom: 45px;
+      }
+
+      .title h2 {
+        font-size: 40px;
+        margin-bottom: 10px;
+      }
+
+      .title p {
+        color: #70798a;
+      }
+
+      .categories {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+
+      .category {
+        background: white;
+        padding: 35px 20px;
+        text-align: center;
+        border: 1px solid #e7eaf0;
+        border-radius: 18px;
+        transition: 0.2s;
+      }
+
+      .category:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(20, 35, 60, 0.08);
+      }
+
+      .icon {
+        font-size: 45px;
+        margin-bottom: 15px;
+      }
+
+      .category p {
+        color: #737c8e;
+        font-size: 14px;
+        margin-top: 8px;
+      }
+
+      .products {
+        background: white;
+      }
+
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+      }
+
+      .product {
+        border: 1px solid #e7eaf0;
+        border-radius: 18px;
+        overflow: hidden;
+        background: white;
+      }
+
+      .product-img {
+        height: 230px;
+        background: #f0f5ff;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 90px;
+      }
+
+      .product-info {
+        padding: 25px;
+      }
+
+      .product-info p {
+        color: #737c8e;
+        margin: 10px 0 20px;
+        font-size: 14px;
+      }
+
+      .product-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .price {
+        font-size: 21px;
+        font-weight: bold;
+      }
+
+      .enquire {
+        color: #1769ff;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .cta {
+        text-align: center;
+        background: #eaf2ff;
+      }
+
+      .cta h2 {
+        font-size: 40px;
+        margin-bottom: 12px;
+      }
+
+      .cta p {
+        color: #687286;
+        margin-bottom: 25px;
+      }
+
+      footer {
+        background: #0b1220;
+        color: #9da7b9;
+        padding: 30px 7%;
+
+        display: flex;
+        justify-content: space-between;
+      }
+
+      footer strong {
+        color: white;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 20px;
+      }
+
+      .footer-links a {
+        color: #9da7b9;
+        text-decoration: none;
+      }
+
+      @media (max-width: 900px) {
         nav {
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 8%;
-            border-bottom: 1px solid #eee;
-            background: white;
+          display: none;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-family: Georgia, serif;
-            font-size: 27px;
-            font-weight: bold;
-        }
-
-        .logo-icon {
-            width: 32px;
-            height: 32px;
-            border: 3px solid #111;
-            border-radius: 50%;
-            position: relative;
-        }
-
-        .logo-icon::before {
-            content: "";
-            position: absolute;
-            width: 2px;
-            height: 10px;
-            background: #111;
-            left: 13px;
-            top: 4px;
-        }
-
-        .logo-icon::after {
-            content: "";
-            position: absolute;
-            width: 8px;
-            height: 2px;
-            background: #111;
-            left: 13px;
-            top: 14px;
-            transform: rotate(30deg);
-            transform-origin: left;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 38px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #444;
-            font-size: 14px;
-        }
-
-        .nav-links a:hover {
-            color: #c69b45;
-        }
-
-        .nav-icons {
-            display: flex;
-            gap: 20px;
-            font-size: 22px;
-        }
-
-        /* HERO */
         .hero {
-            height: 500px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-
-            background:
-                linear-gradient(90deg,
-                rgba(0,0,0,.95) 0%,
-                rgba(0,0,0,.8) 42%,
-                rgba(0,0,0,.25) 100%),
-                url("https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=1600&q=85");
-
-            background-size: cover;
-            background-position: center;
-            color: white;
-        }
-
-        .hero-content {
-            margin-left: 9%;
-            max-width: 500px;
-        }
-
-        .small-title {
-            color: #d8af63;
-            letter-spacing: 4px;
-            font-size: 13px;
-            margin-bottom: 15px;
-        }
-
-        .hero h1 {
-            font-family: Georgia, serif;
-            font-size: 58px;
-            line-height: 1.05;
-            margin-bottom: 20px;
+          grid-template-columns: 1fr;
+          text-align: center;
         }
 
         .hero p {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #ddd;
-            margin-bottom: 28px;
+          margin-left: auto;
+          margin-right: auto;
         }
 
-        .btn {
-            display: inline-block;
-            padding: 14px 28px;
-            background: #e5bd72;
-            color: #111;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: bold;
-            border-radius: 2px;
-        }
-
-        .btn:hover {
-            background: #f2d18f;
-        }
-
-        .arrow {
-            margin-left: 20px;
-            font-size: 18px;
-        }
-
-        .slider-dots {
-            position: absolute;
-            bottom: 18px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 8px;
-        }
-
-        .dot {
-            width: 8px;
-            height: 8px;
-            border: 1px solid white;
-            border-radius: 50%;
-        }
-
-        .dot.active {
-            background: white;
-        }
-
-        /* FEATURES */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            padding: 28px 9%;
-            border-bottom: 1px solid #eee;
-        }
-
-        .feature {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 0 25px;
-            border-right: 1px solid #ddd;
-        }
-
-        .feature:last-child {
-            border: none;
-        }
-
-        .feature-icon {
-            font-size: 28px;
-        }
-
-        .feature h4 {
-            font-size: 14px;
-            margin-bottom: 5px;
-        }
-
-        .feature p {
-            color: #777;
-            font-size: 12px;
-        }
-
-        /* SECTIONS */
-        section {
-            padding: 55px 8%;
-        }
-
-        .section-heading {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 25px;
-        }
-
-        .section-heading h2 {
-            font-family: Georgia, serif;
-            font-size: 34px;
-        }
-
-        .view-all {
-            color: #333;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        /* CATEGORIES */
         .categories {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
+          grid-template-columns: repeat(2, 1fr);
         }
 
-        .category {
-            height: 180px;
-            position: relative;
-            overflow: hidden;
-            border-radius: 3px;
-            background-size: cover;
-            background-position: center;
+        .product-grid {
+          grid-template-columns: 1fr;
         }
 
-        .category::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                transparent 25%,
-                rgba(0,0,0,.85)
-            );
+        .circle {
+          width: 300px;
+          height: 300px;
+          font-size: 110px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .categories {
+          grid-template-columns: 1fr;
         }
 
-        .category:nth-child(1) {
-            background-image: url("https://images.unsplash.com/photo-1523170335258-f5ed11844f49?auto=format&fit=crop&w=700&q=80");
+        .secondary {
+          margin-left: 0;
+          margin-top: 10px;
         }
 
-        .category:nth-child(2) {
-            background-image: url("https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=700&q=80");
-        }
-
-        .category:nth-child(3) {
-            background-image: url("https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=700&q=80");
-        }
-
-        .category:nth-child(4) {
-            background-image: url("https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=700&q=80");
-        }
-
-        .category-content {
-            position: absolute;
-            z-index: 2;
-            bottom: 17px;
-            left: 18px;
-            color: white;
-        }
-
-        .category-content h3 {
-            font-family: Georgia, serif;
-            margin-bottom: 5px;
-        }
-
-        .category-content p {
-            font-size: 12px;
-            color: #ddd;
-        }
-
-        .category-arrow {
-            position: absolute;
-            right: 18px;
-            bottom: 18px;
-            z-index: 2;
-            color: white;
-            font-size: 20px;
-        }
-
-        /* PRODUCTS */
-        .products {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 16px;
-        }
-
-        .product {
-            background: #fafafa;
-            border-radius: 4px;
-            padding: 12px;
-            transition: .3s;
-        }
-
-        .product:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,.08);
-        }
-
-        .product-image {
-            height: 210px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: white;
-            overflow: hidden;
-        }
-
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .product h3 {
-            font-size: 13px;
-            margin: 12px 0 7px;
-        }
-
-        .price {
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        .rating {
-            color: #d29b35;
-            font-size: 13px;
-            margin: 8px 0;
-        }
-
-        .rating span {
-            color: #777;
-            margin-left: 5px;
-        }
-
-        .cart-btn {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            background: #111820;
-            color: white;
-            cursor: pointer;
-            font-size: 12px;
-            border-radius: 2px;
-        }
-
-        .cart-btn:hover {
-            background: #c69b45;
-            color: #111;
-        }
-
-        /* NEWSLETTER */
-        .newsletter {
-            background: #111;
-            color: white;
-            text-align: center;
-            padding: 55px 20px;
-        }
-
-        .newsletter h2 {
-            font-family: Georgia, serif;
-            font-size: 34px;
-            margin-bottom: 10px;
-        }
-
-        .newsletter p {
-            color: #bbb;
-            margin-bottom: 25px;
-        }
-
-        .newsletter input {
-            width: 300px;
-            padding: 14px;
-            border: none;
-            outline: none;
-        }
-
-        .newsletter button {
-            padding: 14px 25px;
-            border: none;
-            background: #e5bd72;
-            cursor: pointer;
-        }
-
-        /* FOOTER */
         footer {
-            background: #080808;
-            color: white;
-            padding: 45px 8%;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 40px;
+          flex-direction: column;
+          text-align: center;
+          gap: 15px;
         }
 
-        footer h3 {
-            font-family: Georgia, serif;
-            margin-bottom: 15px;
+        .footer-links {
+          justify-content: center;
         }
-
-        footer p,
-        footer a {
-            color: #aaa;
-            font-size: 13px;
-            line-height: 2;
-            text-decoration: none;
-            display: block;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 1000px) {
-            .products {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .categories {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .features {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 25px;
-            }
-
-            .feature:nth-child(2) {
-                border: none;
-            }
-
-            footer {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 700px) {
-            nav {
-                padding: 0 5%;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hero {
-                height: 500px;
-            }
-
-            .hero-content {
-                margin-left: 7%;
-                margin-right: 7%;
-            }
-
-            .hero h1 {
-                font-size: 42px;
-            }
-
-            .features {
-                grid-template-columns: 1fr;
-            }
-
-            .feature {
-                border-right: none;
-                border-bottom: 1px solid #ddd;
-                padding: 15px;
-            }
-
-            .categories {
-                grid-template-columns: 1fr;
-            }
-
-            .products {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .product-image {
-                height: 170px;
-            }
-
-            footer {
-                grid-template-columns: 1fr;
-            }
-
-            .newsletter input {
-                width: 65%;
-            }
-        }
-
-        @media (max-width: 450px) {
-            .products {
-                grid-template-columns: 1fr;
-            }
-
-            .hero h1 {
-                font-size: 36px;
-            }
-
-            section {
-                padding: 40px 5%;
-            }
-        }
+      }
     </style>
-</head>
-
-<body>
-
-    <!-- NAVBAR -->
-    <nav>
-        <div class="logo">
-            <div class="logo-icon"></div>
-            TimeCraft
-        </div>
-
-        <ul class="nav-links">
-            <li><a href="/" class="active">Home</a></li>
-            <li><a href="#">Shop</a></li>
-            <li><a href="#">Categories ▾</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/enquiry">Enquiry</a></li>
-        </ul>
-
-        <div class="nav-icons">
-            <span>⌕</span>
-            <span>♙</span>
-            <span>🛒</span>
-        </div>
-    </nav>
-
-
-    <!-- HERO -->
-    <div class="hero">
-
-        <div class="hero-content">
-
-            <div class="small-title">
-                TIMELESS ELEGANCE
-            </div>
-
-            <h1>
-                More Than Just<br>
-                a Watch
-            </h1>
-
-            <p>
-                Discover premium watches that blend style,
-                precision and personality. Find the perfect
-                watch for every moment.
-            </p>
-
-            <a href="#" class="btn">
-                Shop Now
-                <span class="arrow">→</span>
-            </a>
-
-        </div>
-
-        <div class="slider-dots">
-            <div class="dot active"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-        </div>
-
-    </div>
-
-
-    <!-- FEATURES -->
-    <div class="features">
-
-        <div class="feature">
-            <div class="feature-icon">🚚</div>
-            <div>
-                <h4>Free Shipping</h4>
-                <p>On all orders over ₹1500</p>
-            </div>
-        </div>
-
-        <div class="feature">
-            <div class="feature-icon">♢</div>
-            <div>
-                <h4>2 Year Warranty</h4>
-                <p>On all watches</p>
-            </div>
-        </div>
-
-        <div class="feature">
-            <div class="feature-icon">↻</div>
-            <div>
-                <h4>Easy Returns</h4>
-                <p>Hassle-free within 7 days</p>
-            </div>
-        </div>
-
-        <div class="feature">
-            <div class="feature-icon">♧</div>
-            <div>
-                <h4>24/7 Support</h4>
-                <p>We're here to help</p>
-            </div>
-        </div>
-
-    </div>
-
-
-    <!-- CATEGORIES -->
-    <section>
-
-        <div class="section-heading">
-            <h2>Shop by Category</h2>
-            <a href="#" class="view-all">View All →</a>
-        </div>
-
-        <div class="categories">
-
-            <div class="category">
-                <div class="category-content">
-                    <h3>Men's Watches</h3>
-                    <p>Bold. Classic. Timeless.</p>
-                </div>
-                <div class="category-arrow">→</div>
-            </div>
-
-            <div class="category">
-                <div class="category-content">
-                    <h3>Women's Watches</h3>
-                    <p>Elegant. Graceful. You.</p>
-                </div>
-                <div class="category-arrow">→</div>
-            </div>
-
-            <div class="category">
-                <div class="category-content">
-                    <h3>Sports Watches</h3>
-                    <p>Built for Adventure.</p>
-                </div>
-                <div class="category-arrow">→</div>
-            </div>
-
-            <div class="category">
-                <div class="category-content">
-                    <h3>Minimalist Watches</h3>
-                    <p>Less is More.</p>
-                </div>
-                <div class="category-arrow">→</div>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- BEST SELLERS -->
-    <section>
-
-        <div class="section-heading">
-            <h2>Best Sellers</h2>
-            <a href="#" class="view-all">View All →</a>
-        </div>
-
-        <div class="products">
-
-            <div class="product">
-
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=500&q=80">
-                </div>
-
-                <h3>Classic Silver Watch</h3>
-                <div class="price">₹32,999</div>
-
-                <div class="rating">
-                    ★★★★★ <span>4.8 (124)</span>
-                </div>
-
-                <button class="cart-btn" onclick="addToCart('Classic Silver Watch')">
-                    Add to Cart
-                </button>
-
-            </div>
-
-
-            <div class="product">
-
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=500&q=80">
-                </div>
-
-                <h3>Black Sports Watch</h3>
-                <div class="price">₹12,499</div>
-
-                <div class="rating">
-                    ★★★★★ <span>4.7 (98)</span>
-                </div>
-
-                <button class="cart-btn" onclick="addToCart('Black Sports Watch')">
-                    Add to Cart
-                </button>
-
-            </div>
-
-
-            <div class="product">
-
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=500&q=80">
-                </div>
-
-                <h3>Fossil Style Watch</h3>
-                <div class="price">₹18,999</div>
-
-                <div class="rating">
-                    ★★★★★ <span>4.6 (76)</span>
-                </div>
-
-                <button class="cart-btn" onclick="addToCart('Fossil Style Watch')">
-                    Add to Cart
-                </button>
-
-            </div>
-
-
-            <div class="product">
-
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=500&q=80">
-                </div>
-
-                <h3>Minimal Gold Watch</h3>
-                <div class="price">₹14,999</div>
-
-                <div class="rating">
-                    ★★★★★ <span>4.5 (62)</span>
-                </div>
-
-                <button class="cart-btn" onclick="addToCart('Minimal Gold Watch')">
-                    Add to Cart
-                </button>
-
-            </div>
-
-
-            <div class="product">
-
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1508057198894-247b23fe5ade?auto=format&fit=crop&w=500&q=80">
-                </div>
-
-                <h3>Premium Blue Watch</h3>
-                <div class="price">₹41,999</div>
-
-                <div class="rating">
-                    ★★★★★ <span>4.9 (203)</span>
-                </div>
-
-                <button class="cart-btn" onclick="addToCart('Premium Blue Watch')">
-                    Add to Cart
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- NEWSLETTER -->
-    <div class="newsletter">
-
-        <h2>Stay In The Loop</h2>
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <header>
+      <a href="/" class="logo"> BlueWave </a>
+
+      <nav>
+        <a href="/" class="active">Home</a>
+        <a href="/about">About Us</a>
+        <a href="#products">Products</a>
+        <a href="/enquiry" class="nav-btn">Enquiry</a>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div>
+        <span class="badge"> Bluetooth 5.4 Technology </span>
+
+        <h1>
+          Wireless freedom.
+          <span>Made simple.</span>
+        </h1>
 
         <p>
-            Get updates about new collections and exclusive offers.
+          Discover premium Bluetooth headphones, earbuds, speakers and
+          accessories designed for your everyday wireless lifestyle.
         </p>
 
-        <input type="email" placeholder="Enter your email">
+        <a href="#products" class="btn primary"> Explore Products </a>
 
-        <button onclick="subscribe()">
-            Subscribe
-        </button>
+        <a href="/about" class="btn secondary"> About Us </a>
+      </div>
 
-    </div>
+      <div class="hero-image">
+        <div class="circle">🎧</div>
+      </div>
+    </section>
 
+    <!-- Categories -->
+    <section>
+      <div class="title">
+        <h2>Explore Categories</h2>
+        <p>Find the perfect wireless device for you.</p>
+      </div>
 
-    <!-- FOOTER -->
-    <footer>
+      <div class="categories">
+        <div class="category">
+          <div class="icon">🎧</div>
+          <h3>Headphones</h3>
+          <p>Immersive sound and comfortable designs.</p>
+        </div>
 
-        <div>
-            <h3>TimeCraft</h3>
+        <div class="category">
+          <div class="icon">🎵</div>
+          <h3>Earbuds</h3>
+          <p>Compact audio for life on the move.</p>
+        </div>
+
+        <div class="category">
+          <div class="icon">🔊</div>
+          <h3>Speakers</h3>
+          <p>Powerful wireless sound anywhere.</p>
+        </div>
+
+        <div class="category">
+          <div class="icon">⌚</div>
+          <h3>Accessories</h3>
+          <p>Smart Bluetooth accessories.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products -->
+    <section class="products" id="products">
+      <div class="title">
+        <h2>Featured Products</h2>
+        <p>Our popular Bluetooth devices.</p>
+      </div>
+
+      <div class="product-grid">
+        <div class="product">
+          <div class="product-img">🎧</div>
+
+          <div class="product-info">
+            <h3>AirBeat Pro</h3>
+
             <p>
-                Premium watches designed for those who
-                appreciate timeless style and precision.
+              Wireless headphones with powerful sound and long battery life.
             </p>
+
+            <div class="product-bottom">
+              <span class="price">$129</span>
+
+              <a href="/enquiry" class="enquire"> Enquire → </a>
+            </div>
+          </div>
         </div>
 
-        <div>
-            <h3>Shop</h3>
-            <a href="#">Men's Watches</a>
-            <a href="#">Women's Watches</a>
-            <a href="#">Sports Watches</a>
-            <a href="#">Luxury Watches</a>
+        <div class="product">
+          <div class="product-img">🎵</div>
+
+          <div class="product-info">
+            <h3>Pods Mini</h3>
+
+            <p>Lightweight wireless earbuds for everyday listening.</p>
+
+            <div class="product-bottom">
+              <span class="price">$79</span>
+
+              <a href="/enquiry" class="enquire"> Enquire → </a>
+            </div>
+          </div>
         </div>
 
-        <div>
-            <h3>Company</h3>
-            <a href="#">About Us</a>
-            <a href="#">Contact</a>
-            <a href="#">Careers</a>
-            <a href="#">Privacy Policy</a>
-        </div>
+        <div class="product">
+          <div class="product-img">🔊</div>
 
-        <div>
-            <h3>Help</h3>
-            <a href="#">FAQs</a>
-            <a href="#">Shipping</a>
-            <a href="#">Returns</a>
-            <a href="#">Support</a>
-        </div>
+          <div class="product-info">
+            <h3>SoundBox X</h3>
 
+            <p>Portable Bluetooth speaker with rich and powerful sound.</p>
+
+            <div class="product-bottom">
+              <span class="price">$99</span>
+
+              <a href="/enquiry" class="enquire"> Enquire → </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <h2>Need More Information?</h2>
+
+      <p>Have a question about our Bluetooth products? Send us an enquiry.</p>
+
+      <a href="/enquiry" class="btn primary"> Send Enquiry → </a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div>© 2026 <strong>BlueWave</strong>. All rights reserved.</div>
+
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/about">About Us</a>
+        <a href="/enquiry">Enquiry</a>
+      </div>
     </footer>
-
-
-    <script>
-
-        let cart = [];
-
-        function addToCart(product) {
-            cart.push(product);
-
-            alert(
-                product +
-                " has been added to your cart!"
-            );
-
-            console.log("Cart:", cart);
-        }
-
-        function subscribe() {
-
-            const email =
-                document.querySelector(
-                    ".newsletter input"
-                ).value;
-
-            if (email === "") {
-                alert("Please enter your email.");
-                return;
-            }
-
-            alert(
-                "Thank you for subscribing!"
-            );
-
-            document.querySelector(
-                ".newsletter input"
-            ).value = "";
-        }
-
-    </script>
-
-</body>
+  </body>
 </html>
