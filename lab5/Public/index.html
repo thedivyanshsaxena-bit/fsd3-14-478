@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TimeCraft - Premium Watches</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: #171717;
+            background: #fff;
+        }
+
+        /* NAVBAR */
+        nav {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8%;
+            border-bottom: 1px solid #eee;
+            background: white;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: Georgia, serif;
+            font-size: 27px;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            border: 3px solid #111;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .logo-icon::before {
+            content: "";
+            position: absolute;
+            width: 2px;
+            height: 10px;
+            background: #111;
+            left: 13px;
+            top: 4px;
+        }
+
+        .logo-icon::after {
+            content: "";
+            position: absolute;
+            width: 8px;
+            height: 2px;
+            background: #111;
+            left: 13px;
+            top: 14px;
+            transform: rotate(30deg);
+            transform-origin: left;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 38px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #444;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: #c69b45;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+            font-size: 22px;
+        }
+
+        /* HERO */
+        .hero {
+            height: 500px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+
+            background:
+                linear-gradient(90deg,
+                rgba(0,0,0,.95) 0%,
+                rgba(0,0,0,.8) 42%,
+                rgba(0,0,0,.25) 100%),
+                url("https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=1600&q=85");
+
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .hero-content {
+            margin-left: 9%;
+            max-width: 500px;
+        }
+
+        .small-title {
+            color: #d8af63;
+            letter-spacing: 4px;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            font-family: Georgia, serif;
+            font-size: 58px;
+            line-height: 1.05;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #ddd;
+            margin-bottom: 28px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background: #e5bd72;
+            color: #111;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 2px;
+        }
+
+        .btn:hover {
+            background: #f2d18f;
+        }
+
+        .arrow {
+            margin-left: 20px;
+            font-size: 18px;
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border: 1px solid white;
+            border-radius: 50%;
+        }
+
+        .dot.active {
+            background: white;
+        }
+
+        /* FEATURES */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            padding: 28px 9%;
+            border-bottom: 1px solid #eee;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 0 25px;
+            border-right: 1px solid #ddd;
+        }
+
+        .feature:last-child {
+            border: none;
+        }
+
+        .feature-icon {
+            font-size: 28px;
+        }
+
+        .feature h4 {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .feature p {
+            color: #777;
+            font-size: 12px;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 55px 8%;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+
+        .section-heading h2 {
+            font-family: Georgia, serif;
+            font-size: 34px;
+        }
+
+        .view-all {
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        /* CATEGORIES */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .category {
+            height: 180px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 3px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .category::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                transparent 25%,
+                rgba(0,0,0,.85)
+            );
+        }
+
+        .category:nth-child(1) {
+            background-image: url("https://images.unsplash.com/photo-1523170335258-f5ed11844f49?auto=format&fit=crop&w=700&q=80");
+        }
+
+        .category:nth-child(2) {
+            background-image: url("https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=700&q=80");
+        }
+
+        .category:nth-child(3) {
+            background-image: url("https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=700&q=80");
+        }
+
+        .category:nth-child(4) {
+            background-image: url("https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=700&q=80");
+        }
+
+        .category-content {
+            position: absolute;
+            z-index: 2;
+            bottom: 17px;
+            left: 18px;
+            color: white;
+        }
+
+        .category-content h3 {
+            font-family: Georgia, serif;
+            margin-bottom: 5px;
+        }
+
+        .category-content p {
+            font-size: 12px;
+            color: #ddd;
+        }
+
+        .category-arrow {
+            position: absolute;
+            right: 18px;
+            bottom: 18px;
+            z-index: 2;
+            color: white;
+            font-size: 20px;
+        }
+
+        /* PRODUCTS */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+        }
+
+        .product {
+            background: #fafafa;
+            border-radius: 4px;
+            padding: 12px;
+            transition: .3s;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,.08);
+        }
+
+        .product-image {
+            height: 210px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product h3 {
+            font-size: 13px;
+            margin: 12px 0 7px;
+        }
+
+        .price {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .rating {
+            color: #d29b35;
+            font-size: 13px;
+            margin: 8px 0;
+        }
+
+        .rating span {
+            color: #777;
+            margin-left: 5px;
+        }
+
+        .cart-btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background: #111820;
+            color: white;
+            cursor: pointer;
+            font-size: 12px;
+            border-radius: 2px;
+        }
+
+        .cart-btn:hover {
+            background: #c69b45;
+            color: #111;
+        }
+
+        /* NEWSLETTER */
+        .newsletter {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 55px 20px;
+        }
+
+        .newsletter h2 {
+            font-family: Georgia, serif;
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        .newsletter p {
+            color: #bbb;
+            margin-bottom: 25px;
+        }
+
+        .newsletter input {
+            width: 300px;
+            padding: 14px;
+            border: none;
+            outline: none;
+        }
+
+        .newsletter button {
+            padding: 14px 25px;
+            border: none;
+            background: #e5bd72;
+            cursor: pointer;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #080808;
+            color: white;
+            padding: 45px 8%;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        footer h3 {
+            font-family: Georgia, serif;
+            margin-bottom: 15px;
+        }
+
+        footer p,
+        footer a {
+            color: #aaa;
+            font-size: 13px;
+            line-height: 2;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1000px) {
+            .products {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+
+            .feature:nth-child(2) {
+                border: none;
+            }
+
+            footer {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+            nav {
+                padding: 0 5%;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                height: 500px;
+            }
+
+            .hero-content {
+                margin-left: 7%;
+                margin-right: 7%;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .feature {
+                border-right: none;
+                border-bottom: 1px solid #ddd;
+                padding: 15px;
+            }
+
+            .categories {
+                grid-template-columns: 1fr;
+            }
+
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .product-image {
+                height: 170px;
+            }
+
+            footer {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter input {
+                width: 65%;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            section {
+                padding: 40px 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">
+            <div class="logo-icon"></div>
+            TimeCraft
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="/" class="active">Home</a></li>
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">Categories ▾</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/enquiry">Enquiry</a></li>
+        </ul>
+
+        <div class="nav-icons">
+            <span>⌕</span>
+            <span>♙</span>
+            <span>🛒</span>
+        </div>
+    </nav>
+
+
+    <!-- HERO -->
+    <div class="hero">
+
+        <div class="hero-content">
+
+            <div class="small-title">
+                TIMELESS ELEGANCE
+            </div>
+
+            <h1>
+                More Than Just<br>
+                a Watch
+            </h1>
+
+            <p>
+                Discover premium watches that blend style,
+                precision and personality. Find the perfect
+                watch for every moment.
+            </p>
+
+            <a href="#" class="btn">
+                Shop Now
+                <span class="arrow">→</span>
+            </a>
+
+        </div>
+
+        <div class="slider-dots">
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+
+    </div>
+
+
+    <!-- FEATURES -->
+    <div class="features">
+
+        <div class="feature">
+            <div class="feature-icon">🚚</div>
+            <div>
+                <h4>Free Shipping</h4>
+                <p>On all orders over ₹1500</p>
+            </div>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">♢</div>
+            <div>
+                <h4>2 Year Warranty</h4>
+                <p>On all watches</p>
+            </div>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">↻</div>
+            <div>
+                <h4>Easy Returns</h4>
+                <p>Hassle-free within 7 days</p>
+            </div>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">♧</div>
+            <div>
+                <h4>24/7 Support</h4>
+                <p>We're here to help</p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- CATEGORIES -->
+    <section>
+
+        <div class="section-heading">
+            <h2>Shop by Category</h2>
+            <a href="#" class="view-all">View All →</a>
+        </div>
+
+        <div class="categories">
+
+            <div class="category">
+                <div class="category-content">
+                    <h3>Men's Watches</h3>
+                    <p>Bold. Classic. Timeless.</p>
+                </div>
+                <div class="category-arrow">→</div>
+            </div>
+
+            <div class="category">
+                <div class="category-content">
+                    <h3>Women's Watches</h3>
+                    <p>Elegant. Graceful. You.</p>
+                </div>
+                <div class="category-arrow">→</div>
+            </div>
+
+            <div class="category">
+                <div class="category-content">
+                    <h3>Sports Watches</h3>
+                    <p>Built for Adventure.</p>
+                </div>
+                <div class="category-arrow">→</div>
+            </div>
+
+            <div class="category">
+                <div class="category-content">
+                    <h3>Minimalist Watches</h3>
+                    <p>Less is More.</p>
+                </div>
+                <div class="category-arrow">→</div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- BEST SELLERS -->
+    <section>
+
+        <div class="section-heading">
+            <h2>Best Sellers</h2>
+            <a href="#" class="view-all">View All →</a>
+        </div>
+
+        <div class="products">
+
+            <div class="product">
+
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=500&q=80">
+                </div>
+
+                <h3>Classic Silver Watch</h3>
+                <div class="price">₹32,999</div>
+
+                <div class="rating">
+                    ★★★★★ <span>4.8 (124)</span>
+                </div>
+
+                <button class="cart-btn" onclick="addToCart('Classic Silver Watch')">
+                    Add to Cart
+                </button>
+
+            </div>
+
+
+            <div class="product">
+
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=500&q=80">
+                </div>
+
+                <h3>Black Sports Watch</h3>
+                <div class="price">₹12,499</div>
+
+                <div class="rating">
+                    ★★★★★ <span>4.7 (98)</span>
+                </div>
+
+                <button class="cart-btn" onclick="addToCart('Black Sports Watch')">
+                    Add to Cart
+                </button>
+
+            </div>
+
+
+            <div class="product">
+
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=500&q=80">
+                </div>
+
+                <h3>Fossil Style Watch</h3>
+                <div class="price">₹18,999</div>
+
+                <div class="rating">
+                    ★★★★★ <span>4.6 (76)</span>
+                </div>
+
+                <button class="cart-btn" onclick="addToCart('Fossil Style Watch')">
+                    Add to Cart
+                </button>
+
+            </div>
+
+
+            <div class="product">
+
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=500&q=80">
+                </div>
+
+                <h3>Minimal Gold Watch</h3>
+                <div class="price">₹14,999</div>
+
+                <div class="rating">
+                    ★★★★★ <span>4.5 (62)</span>
+                </div>
+
+                <button class="cart-btn" onclick="addToCart('Minimal Gold Watch')">
+                    Add to Cart
+                </button>
+
+            </div>
+
+
+            <div class="product">
+
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1508057198894-247b23fe5ade?auto=format&fit=crop&w=500&q=80">
+                </div>
+
+                <h3>Premium Blue Watch</h3>
+                <div class="price">₹41,999</div>
+
+                <div class="rating">
+                    ★★★★★ <span>4.9 (203)</span>
+                </div>
+
+                <button class="cart-btn" onclick="addToCart('Premium Blue Watch')">
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- NEWSLETTER -->
+    <div class="newsletter">
+
+        <h2>Stay In The Loop</h2>
+
+        <p>
+            Get updates about new collections and exclusive offers.
+        </p>
+
+        <input type="email" placeholder="Enter your email">
+
+        <button onclick="subscribe()">
+            Subscribe
+        </button>
+
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div>
+            <h3>TimeCraft</h3>
+            <p>
+                Premium watches designed for those who
+                appreciate timeless style and precision.
+            </p>
+        </div>
+
+        <div>
+            <h3>Shop</h3>
+            <a href="#">Men's Watches</a>
+            <a href="#">Women's Watches</a>
+            <a href="#">Sports Watches</a>
+            <a href="#">Luxury Watches</a>
+        </div>
+
+        <div>
+            <h3>Company</h3>
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+            <a href="#">Careers</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+
+        <div>
+            <h3>Help</h3>
+            <a href="#">FAQs</a>
+            <a href="#">Shipping</a>
+            <a href="#">Returns</a>
+            <a href="#">Support</a>
+        </div>
+
+    </footer>
+
+
+    <script>
+
+        let cart = [];
+
+        function addToCart(product) {
+            cart.push(product);
+
+            alert(
+                product +
+                " has been added to your cart!"
+            );
+
+            console.log("Cart:", cart);
+        }
+
+        function subscribe() {
+
+            const email =
+                document.querySelector(
+                    ".newsletter input"
+                ).value;
+
+            if (email === "") {
+                alert("Please enter your email.");
+                return;
+            }
+
+            alert(
+                "Thank you for subscribing!"
+            );
+
+            document.querySelector(
+                ".newsletter input"
+            ).value = "";
+        }
+
+    </script>
+
+</body>
+</html>
