@@ -1,0 +1,482 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - TimeCraft</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: #171717;
+            background: #fff;
+        }
+
+        /* NAVBAR */
+        nav {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8%;
+            border-bottom: 1px solid #eee;
+            background: white;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: Georgia, serif;
+            font-size: 27px;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            border: 3px solid #111;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .logo-icon::before {
+            content: "";
+            position: absolute;
+            width: 2px;
+            height: 10px;
+            background: #111;
+            left: 13px;
+            top: 4px;
+        }
+
+        .logo-icon::after {
+            content: "";
+            position: absolute;
+            width: 8px;
+            height: 2px;
+            background: #111;
+            left: 13px;
+            top: 14px;
+            transform: rotate(30deg);
+            transform-origin: left;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 38px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #444;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover,
+        .nav-links .active {
+            color: #c69b45;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+            font-size: 22px;
+        }
+
+        /* PAGE HERO */
+        .page-hero {
+            height: 330px;
+            background:
+                linear-gradient(rgba(0,0,0,.72), rgba(0,0,0,.72)),
+                url("https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=1600&q=85");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .page-hero h1 {
+            font-family: Georgia, serif;
+            font-size: 52px;
+            margin-bottom: 12px;
+        }
+
+        .page-hero p {
+            color: #ddd;
+            font-size: 15px;
+        }
+
+        /* ABOUT */
+        .about {
+            padding: 75px 9%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 65px;
+            align-items: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 470px;
+            object-fit: cover;
+        }
+
+        .small-title {
+            color: #c69b45;
+            letter-spacing: 4px;
+            font-size: 13px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .about-content h2 {
+            font-family: Georgia, serif;
+            font-size: 40px;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 18px;
+            font-size: 15px;
+        }
+
+        .gold-line {
+            width: 60px;
+            height: 3px;
+            background: #c69b45;
+            margin: 25px 0;
+        }
+
+        /* VALUES */
+        .values-section {
+            background: #f7f7f7;
+            padding: 65px 8%;
+            text-align: center;
+        }
+
+        .values-section h2 {
+            font-family: Georgia, serif;
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+
+        .values {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .value {
+            background: white;
+            padding: 35px 25px;
+            border: 1px solid #eee;
+        }
+
+        .value-icon {
+            font-size: 38px;
+            margin-bottom: 18px;
+        }
+
+        .value h3 {
+            font-family: Georgia, serif;
+            font-size: 21px;
+            margin-bottom: 12px;
+        }
+
+        .value p {
+            color: #777;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* STORY */
+        .story {
+            padding: 70px 9%;
+            text-align: center;
+            max-width: 950px;
+            margin: auto;
+        }
+
+        .story h2 {
+            font-family: Georgia, serif;
+            font-size: 38px;
+            margin-bottom: 22px;
+        }
+
+        .story p {
+            color: #666;
+            line-height: 1.9;
+            font-size: 15px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #080808;
+            color: white;
+            padding: 45px 8%;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        footer h3 {
+            font-family: Georgia, serif;
+            margin-bottom: 15px;
+        }
+
+        footer p,
+        footer a {
+            color: #aaa;
+            font-size: 13px;
+            line-height: 2;
+            text-decoration: none;
+            display: block;
+        }
+
+        footer a:hover {
+            color: #e5bd72;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 800px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+                padding: 50px 6%;
+            }
+
+            .about-image img {
+                height: 350px;
+            }
+
+            .values {
+                grid-template-columns: 1fr;
+            }
+
+            footer {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            nav {
+                padding: 0 5%;
+            }
+
+            .page-hero h1 {
+                font-size: 40px;
+            }
+
+            .about-content h2 {
+                font-size: 32px;
+            }
+
+            footer {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+
+        <div class="logo">
+            <div class="logo-icon"></div>
+            TimeCraft
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">Categories ▾</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="/enquiry">Contact</a></li>
+        </ul>
+
+        <div class="nav-icons">
+            <span>⌕</span>
+            <span>♙</span>
+            <span>🛒</span>
+        </div>
+
+    </nav>
+
+
+    <!-- HERO -->
+    <section class="page-hero">
+
+        <div>
+            <h1>About TimeCraft</h1>
+            <p>Where timeless design meets modern precision.</p>
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section class="about">
+
+        <div class="about-image">
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85">
+        </div>
+
+        <div class="about-content">
+
+            <div class="small-title">
+                OUR STORY
+            </div>
+
+            <h2>
+                Crafted For Those
+                Who Value Time
+            </h2>
+
+            <div class="gold-line"></div>
+
+            <p>
+                At TimeCraft, we believe a watch is more than an
+                accessory. It is a reflection of personality, style,
+                ambition and the moments that matter.
+            </p>
+
+            <p>
+                Our collection brings together timeless designs,
+                modern craftsmanship and reliable precision. Every
+                watch is carefully selected to deliver a perfect
+                balance between elegance and functionality.
+            </p>
+
+            <p>
+                Whether you are looking for your first classic watch
+                or adding another piece to your collection, TimeCraft
+                is here to help you find something that feels truly
+                yours.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- VALUES -->
+    <section class="values-section">
+
+        <h2>What We Stand For</h2>
+
+        <div class="values">
+
+            <div class="value">
+                <div class="value-icon">⌚</div>
+                <h3>Timeless Design</h3>
+                <p>
+                    We choose designs that remain stylish today,
+                    tomorrow and for years to come.
+                </p>
+            </div>
+
+            <div class="value">
+                <div class="value-icon">✦</div>
+                <h3>Quality First</h3>
+                <p>
+                    Every watch is selected with attention to
+                    craftsmanship, materials and reliability.
+                </p>
+            </div>
+
+            <div class="value">
+                <div class="value-icon">♡</div>
+                <h3>Customer Care</h3>
+                <p>
+                    From choosing your watch to after-sales support,
+                    your experience matters to us.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- STORY -->
+    <section class="story">
+
+        <div class="small-title">
+            WHY TIMECRAFT
+        </div>
+
+        <h2>Every Second Tells A Story</h2>
+
+        <p>
+            Time moves forward, but great design never goes out of style.
+            That's the philosophy behind TimeCraft. We bring together
+            watches for different personalities, occasions and lifestyles,
+            making it easier for you to find a timepiece that becomes part
+            of your story.
+        </p>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div>
+            <h3>TimeCraft</h3>
+            <p>
+                Premium watches designed for those who appreciate
+                timeless style and precision.
+            </p>
+        </div>
+
+        <div>
+            <h3>Shop</h3>
+            <a href="#">Men's Watches</a>
+            <a href="#">Women's Watches</a>
+            <a href="#">Sports Watches</a>
+            <a href="#">Luxury Watches</a>
+        </div>
+
+        <div>
+            <h3>Company</h3>
+            <a href="about.html">About Us</a>
+            <a href="enquiry.html">Contact</a>
+            <a href="#">Careers</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+
+        <div>
+            <h3>Help</h3>
+            <a href="#">FAQs</a>
+            <a href="#">Shipping</a>
+            <a href="#">Returns</a>
+            <a href="enquiry.html">Support</a>
+        </div>
+
+    </footer>
+
+</body>
+</html>
+
