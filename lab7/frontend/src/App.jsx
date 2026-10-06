@@ -3,6 +3,7 @@ import Book from "./components/Book.jsx"
 import Fruits from "./components/Fruits.jsx";
 import { books } from "./data/books.js";
 import { pens } from "./data/pens.js";
+import Event from "./components/Event.jsx";
 
 function Book(props) {
   const { picUrl, bname, price, quantity, rating } = props.book;
@@ -28,7 +29,8 @@ export default function App() {
         <Book book={books[1]} />
         <Pen pen={pens[0]} />
         <Pen pen={pens[1]} />
-        <Fruits/>      
+        <Fruits/>
+        <Event/>      
       </div>
     </>
   );
