@@ -8,7 +8,7 @@
  ];
 
  const ListItem= products.map((item)=>  (
- <li key={item.id}  style={{color: item.isFruit && "red"}}>{item.title}</li>  // only do red color on fruit not on vegetables
+ <li key={item.id}  style={{color: item.isFruit ? "red" : "green"}}>{item.title}</li>  // only do red color on fruit and green on vegetables
 ));
 
 console.log(ListItem);
